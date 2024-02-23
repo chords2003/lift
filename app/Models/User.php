@@ -62,6 +62,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function follows()
+    {
+        return $this->morphToMany(User::class, 'followable', 'follows', 'follower_id', 'followable_id');
+    }
+
+
     public function posts()
     {
         return $this->hasMany(Post::class);

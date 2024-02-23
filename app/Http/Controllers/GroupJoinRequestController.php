@@ -12,9 +12,11 @@ class GroupJoinRequestController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
+{
+    $requests = GroupJoinRequest::where('status', 'pending')->get();
+
+    return view('groups.request', ['requests' => $requests]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -24,12 +26,27 @@ class GroupJoinRequestController extends Controller
         //
     }
 
+    public function approve(GroupJoinRequest $request)
+    {
+        $request->user->groups()->attach($request->group);
+
+        return redirect()->back()->with('success', 'User added to group');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreGroupJoinRequestRequest $request)
     {
-        //
+        //validate the user's request
+        $validated = $request->validated();
+        //create a new group join request
+        $groupJoinRequest = GroupJoinRequest::create([
+            'user_id' => $validated['user_id'],
+            'group_id' => $validated['group_id'],
+        ]);
+        //redirect the user back to the group page
+        return redirect()->back()->with('success', 'Group join request sent');
     }
 
     /**

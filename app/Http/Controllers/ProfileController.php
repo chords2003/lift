@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Post;
+use Illuminate\View\View;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -56,5 +58,20 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function show(UserProfile $userProfile, Post $post)
+    {
+        $user = Auth::user();
+
+    // ...or return a 404 response if there is no authenticated user
+        if (!$user) abort(404);
+
+        // Redirect to the user's profile
+        return view('profile', [
+            'user' => $user,
+            'posts' => $user->posts()->with(['likes'])->paginate(10),
+        ]);
+
     }
 }

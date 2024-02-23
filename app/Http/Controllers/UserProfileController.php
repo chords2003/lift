@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserProfile;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreUserProfileRequest;
 use App\Http\Requests\UpdateUserProfileRequest;
-use App\Models\UserProfile;
+use App\Models\Post;
+use App\Models\User;
 
 class UserProfileController extends Controller
 {
@@ -35,9 +38,12 @@ class UserProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserProfile $userProfile)
+    public function show(UserProfile $userProfile, Post $post, User $user)
     {
-        //
+        return view('index', [
+            'posts' => $user->posts()->with(['likes','comments'])->paginate(10),
+        ]);
+
     }
 
     /**
