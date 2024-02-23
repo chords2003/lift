@@ -1,52 +1,191 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>U</title>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- Typography CSS -->
+      <link rel="stylesheet" href="css/typography.css">
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive CSS -->
+      <link rel="stylesheet" href="css/responsive.css">
+   </head>
+   <body>
+      <!-- loader Start -->
+      <div id="loading">
+         <div id="loading-center">
+         </div>
+      </div>
+      <!-- loader END -->
+        <!-- Sign in Start -->
+        <section class="sign-in-page">
+          <div id="container-inside">
+              <div id="circle-small"></div>
+              <div id="circle-medium"></div>
+              <div id="circle-large"></div>
+              <div id="circle-xlarge"></div>
+              <div id="circle-xxlarge"></div>
+          </div>
+          {{-- Section for Carasol pictures --}}
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+            <div class="container p-0">
+                <div class="row no-gutters">
+                    <div class="col-md-6 text-center pt-5">
+                        <div class="sign-in-detail text-white">
+                            <a class="sign-in-logo mb-5" href="#"><img src="images/logo-full.png" class="img-fluid" alt="logo"></a>
+                            <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-items="1"
+                                data-items-laptop="1" data-items-tab="1"
+                                data-items-mobile="1" data-items-mobile-sm="1" data-margin="0">
+                                <div class="item">
+                                    <img src="images/login/1.png" class="img-fluid mb-4" alt="logo">
+                                    <h4 class="mb-1 text-white">Find new friends</h4>
+                                    <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                                </div>
+                                <div class="item">
+                                    <img src="images/login/2.png" class="img-fluid mb-4" alt="logo">
+                                    <h4 class="mb-1 text-white">Connect with the world</h4>
+                                    <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                                </div>
+                                <div class="item">
+                                    <img src="images/login/3.png" class="img-fluid mb-4" alt="logo">
+                                    <h4 class="mb-1 text-white">Create new events</h4>
+                                    <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+                    <div class="col-md-6 bg-white pt-5">
+                        <div class="sign-in-from">
+                            <h1 class="mb-0">Register</h1>
+                            {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                            <p>Enter your credentials to join.</p>
+                            <form method="POST" action="/register" class="mt-4">
+                                @csrf
+                                 <!-- Name -->
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input type="text" class="form-control mb-0"
+                                    id="exampleInputEmail1"
+                                    name="name" :value="old('name')"
+                                    required autofocus
+                                    placeholder="Enter your name">
+                                </div>
+                                   <!-- Username -->
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Username</label>
+                                    <input type="text" class="form-control mb-0"
+                                    id="exampleInputEmail1"
+                                    name="username" :value="old('username')"
+                                    required autofocus
+                                    placeholder="Enter a Username">
+                                </div>
+                                {{-- Email Address --}}
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                                    <input type="email" class="form-control mb-0"
+                                    id="exampleInputEmail1"
+                                    name="email" :value="old('email')"
+                                    required
+                                    placeholder="Enter an Email Address">
+                                </div>
+                                <!-- Password -->
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                                    <input type="password" class="form-control mb-0"
+                                    id="exampleInputPassword1"
+                                    name="password" :value="old('password')"
+                                    required autocomplete="new-password"
+                                    placeholder="Enter a password">
+                                </div>
+                                 <!-- Confirm Password -->
+                                <div class="form-group">
+                                    <label for="exampleInputPasswordConfirmation">Confirm Password</label>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                                    <input type="password" class="form-control mb-0"
+                                    id="exampleInputPassword1"
+                                    name="password_confirmation"
+                                    required
+                                    placeholder="Confirm your password">
+                                </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+                                {{-- remember Me Button section --}}
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+                                <div class="d-inline-block w-100">
+                                    <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+                                        <input type="checkbox" name="remember" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+
+                                {{-- validating user --}}
+                                @if (Route::has('password.request'))
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                                @endif
+
+                                <button type="submit" class="btn btn-primary float-right">Sign up</button>
+                            </form>
+                                <div class="sign-info">
+                                    <span class="dark-color d-inline-block line-height-2">Already have an account?
+                                        <a href="/login">Log in</a></span>
+                                    <ul class="iq-social-media">
+                                        <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
+                                        <li><a href="#"><i class="ri-twitter-line"></i></a></li>
+                                        <li><a href="#"><i class="ri-instagram-line"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <!-- Sign in END -->
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <!-- Appear JavaScript -->
+      <script src="js/jquery.appear.js"></script>
+      <!-- Countdown JavaScript -->
+      <script src="js/countdown.min.js"></script>
+      <!-- Counterup JavaScript -->
+      <script src="js/waypoints.min.js"></script>
+      <script src="js/jquery.counterup.min.js"></script>
+      <!-- Wow JavaScript -->
+      <script src="js/wow.min.js"></script>
+      <!-- Apexcharts JavaScript -->
+      <script src="js/apexcharts.js"></script>
+      <!-- lottie JavaScript -->
+      <script src="js/lottie.js"></script>
+      <!-- Slick JavaScript -->
+      <script src="js/slick.min.js"></script>
+      <!-- Select2 JavaScript -->
+      <script src="js/select2.min.js"></script>
+      <!-- Owl Carousel JavaScript -->
+      <script src="js/owl.carousel.min.js"></script>
+      <!-- Magnific Popup JavaScript -->
+      <script src="js/jquery.magnific-popup.min.js"></script>
+      <!-- Smooth Scrollbar JavaScript -->
+      <script src="js/smooth-scrollbar.js"></script>
+      <!-- Chart Custom JavaScript -->
+      <script src="js/chart-custom.js"></script>
+      <!-- Custom JavaScript -->
+      <script src="js/custom.js"></script>
+   </body>
+</html>
