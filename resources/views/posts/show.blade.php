@@ -17,7 +17,7 @@
                         <h5 class="mb-0 d-inline-block">
                             <a href="/users/{{ $post->user->username }}">{{ $post->user->name }}</a>
                         </h5>
-                        <p class="mb-0 d-inline-block"> {{ $post->user->username ' ' . }} Add New Post</p>
+                        <p class="mb-0 d-inline-block"> {{ $post->user->username  }} Add New Post</p>
                         <p class="mb-0 text-primary">
                             {{ $post->created_at->format('l j F ') . '-' }} {{ $post->created_at->ago() }}
                         </p>
