@@ -34,7 +34,7 @@
                    <nav class="iq-sidebar-menu">
                       <ul id="iq-sidebar-toggle" class="iq-menu">
                          <li class="active">
-                            <a href="/" class="iq-waves-effect"><i class="las la-newspaper"></i><span>Newsfeed</span></a>
+                            <a href="/index" class="iq-waves-effect"><i class="las la-newspaper"></i><span>Newsfeed</span></a>
                          </li>
                          <li>
                             {{-- create a  --}}
